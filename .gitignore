@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+
+#Build results
+/**/build
+/**/cmake-build-debug
+/**/CMakeLists.txt.user*
+
+#IDE
+.idea
