@@ -1,24 +1,16 @@
 #include "Ipv4.h"
+#include <algorithm> // for std::find
 
-class Ipv4
+Ipv4::Ipv4(const std::string &Ipv4, char delimiter) : arr_ip{}
 {
-    explicit Ipv4(const std::string& Ipv4, const char delimiter = '.')
-    {
-        std::stringstream ss(Ipv4);
-        std::string token;
-        while (std::getline(ss, token, delimiter))
-        {
-            arr_ip.push_back(std::stoul(token));
-        }
+    std::stringstream ss(Ipv4);
+    std::string token;
+    size_t i = 0;
+    while (std::getline(ss, token, delimiter)) {
+        arr_ip[i++] = std::stoul(token);
     }
+}
 
-    bool operator > (const Ipv4& other)
-    {
-        return arr_ip > other.arr_ip;
-    }
+bool Ipv4::operator>(const Ipv4 &other) {return arr_ip > other.arr_ip;}
 
-    bool contains (int value)
-    {
-        return std::find(arr_ip.begin(), arr_ip.end(), value) != arr_ip.end();
-    }
-};
+bool Ipv4::contains(int value) {return std::find(std::begin(arr_ip), std::end(arr_ip), value) != std::end(arr_ip);}
