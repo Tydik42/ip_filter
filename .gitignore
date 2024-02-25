@@ -38,3 +38,6 @@
 
 #IDE
 .idea
+
+# Build
+.cmake-build-debug
