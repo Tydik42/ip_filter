@@ -17,6 +17,12 @@ class Ipv4
 
         bool operator>(const Ipv4 &other);
 
+        std::ostream &operator<<(std::ostream &os) const;
+
+        auto operator<=>(const Ipv4& ) const = default;
+
+        std::string to_string();
+
     private:
         std::array<uint16_t, 4> arr_ip;
 };

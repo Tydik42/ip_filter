@@ -42,16 +42,18 @@ target_link_libraries(
         address4
 )
 
-set_target_properties(${MAIN_APP_NAME} addrv4 address_test PROPERTIES
-        CXX_STANDARD 20
-        CXX_STANDARD_REQUIRED ON
-)
+
 
 include(GoogleTest)
 gtest_discover_tests(address_test)
 ]]
 
 # compiler options
+set_target_properties(${MAIN_APP_NAME} addrv4  PROPERTIES
+        CXX_STANDARD 20
+        CXX_STANDARD_REQUIRED ON
+)
+
 target_link_libraries(${MAIN_APP_NAME} PRIVATE
         addrv4
 )
