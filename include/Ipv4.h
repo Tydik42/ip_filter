@@ -13,6 +13,14 @@ class Ipv4
 
         explicit Ipv4(const std::string &Ipv4, char delimiter = '.');
 
+        uint16_t first() const {return arr_ip[0];}
+
+        uint16_t second() const {return arr_ip[1];}
+
+        uint16_t third() const {return arr_ip[2];}
+
+        uint16_t fourth() const {return arr_ip[3];}
+
         bool contains(int value);
 
         bool operator>(const Ipv4 &other);
