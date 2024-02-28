@@ -49,7 +49,7 @@ gtest_discover_tests(address_test)
 ]]
 
 # compiler options
-set_target_properties(${MAIN_APP_NAME} addrv4  PROPERTIES
+set_target_properties(${MAIN_APP_NAME} addrv4 PROPERTIES
         CXX_STANDARD 20
         CXX_STANDARD_REQUIRED ON
 )
