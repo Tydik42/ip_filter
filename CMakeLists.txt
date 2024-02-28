@@ -19,7 +19,7 @@ include_directories(include)
 
 
 add_executable(${MAIN_APP_NAME} src/main.cpp)
-add_library(addrv4 include/Ipv4.h src/Ipv4.cpp)
+add_library(addrv4 include/Ipv4.h src/Ipv4.cpp include/utils.h src/utils.cpp)
 
 #[[ # for testing
 include(FetchContent)
@@ -49,7 +49,7 @@ gtest_discover_tests(address_test)
 ]]
 
 # compiler options
-set_target_properties(${MAIN_APP_NAME} addrv4 PROPERTIES
+set_target_properties(${MAIN_APP_NAME} addrv4    PROPERTIES
         CXX_STANDARD 20
         CXX_STANDARD_REQUIRED ON
 )
