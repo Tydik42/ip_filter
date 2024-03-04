@@ -21,7 +21,7 @@ include_directories(include)
 add_executable(${MAIN_APP_NAME} src/main.cpp)
 add_library(addrv4 include/Ipv4.h src/Ipv4.cpp include/utils.h src/utils.cpp)
 
-#[[ # for testing
+# for testing
 include(FetchContent)
 FetchContent_Declare(
         googletest
@@ -34,7 +34,7 @@ enable_testing()
 
 add_executable(
         address_test
-        tests/address_test.cc
+        tests/address_test.cpp
 )
 target_link_libraries(
         address_test
@@ -42,11 +42,9 @@ target_link_libraries(
         address4
 )
 
-
-
 include(GoogleTest)
 gtest_discover_tests(address_test)
-]]
+
 
 # compiler options
 set_target_properties(${MAIN_APP_NAME} addrv4    PROPERTIES
