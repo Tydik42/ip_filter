@@ -5,12 +5,12 @@
 #include <sstream>
 #include <cstdint>
 #include <array>
+#include <compare>
+#include "utils.h"
 
 class Ipv4
 {
     public:
-        Ipv4() : arr_ip{0, 0, 0, 0} {};
-
         explicit Ipv4(const std::string &Ipv4, char delimiter = '.');
 
         uint16_t first() const {return arr_ip[0];}
@@ -27,7 +27,17 @@ class Ipv4
 
         std::ostream &operator<<(std::ostream &os) const;
 
-        auto operator<=>(const Ipv4& ) const = default;
+        bool operator==(const Ipv4& rhs) const { return arr_ip == rhs.arr_ip; }
+
+        bool operator!=(const Ipv4& rhs) const { return arr_ip != rhs.arr_ip; }
+
+        bool operator<(const Ipv4& rhs) const { return arr_ip < rhs.arr_ip;   }
+
+        bool operator<=(const Ipv4& rhs) const { return arr_ip <= rhs.arr_ip; }
+
+        bool operator>(const Ipv4& rhs) const { return arr_ip > rhs.arr_ip;   }
+
+        bool operator>=(const Ipv4& rhs) const { return arr_ip >= rhs.arr_ip; }
 
         std::string to_string();
 
