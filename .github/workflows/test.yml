@@ -1,0 +1,27 @@
+name: 'test'
+
+on:
+  push:
+    branches: 
+      - 'main'
+      - '*'
+
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Build binaries
+        run: |
+          cmake .
+          cmake --build . --target all
+      - name: Create debian package
+        run: |
+          cmake --build . --target package
+      - name: Run unit tests
+        run: ctest
+      - name: Integration test
+        run: ./tests/integration_test.bash
