@@ -5,8 +5,8 @@
 #include <sstream>
 #include <cstdint>
 #include <array>
-#include <compare>
-#include "utils.h"
+#include <regex>
+#include <algorithm>
 
 class Ipv4
 {
@@ -26,6 +26,13 @@ class Ipv4
         bool operator>(const Ipv4 &other);
 
         std::ostream &operator<<(std::ostream &os) const;
+
+        inline static bool is_valid_ip(const std::string &ip)
+        {
+            std::regex ipv4regex(
+                    "(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])");
+            return std::regex_match(ip, ipv4regex);
+        }
 
         bool operator==(const Ipv4& rhs) const { return arr_ip == rhs.arr_ip; }
 
