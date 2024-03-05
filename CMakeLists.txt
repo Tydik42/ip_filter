@@ -62,6 +62,8 @@ target_compile_options(${MAIN_APP_NAME} PRIVATE
 target_compile_options(addrv4 PRIVATE
         -Wall -Wextra -pedantic -Werror
 )
+include(GoogleTest)
+gtest_discover_tests(address_test)
 
 install(TARGETS ${MAIN_APP_NAME} RUNTIME DESTINATION bin COMPONENT application)
 
