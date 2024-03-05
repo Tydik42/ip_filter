@@ -39,7 +39,7 @@ add_executable(
 target_link_libraries(
         address_test
         GTest::gtest_main
-        address4
+        addrv4
 )
 
 include(GoogleTest)
