@@ -18,7 +18,7 @@ configure_file(version.h.in version.h)
 include_directories(include)
 
 
-add_executable(${MAIN_APP_NAME} src/main.cpp)
+add_executable(${MAIN_APP_NAME} src/ip_filter.cpp)
 add_library(addrv4 include/Ipv4.h src/Ipv4.cpp include/utils.h src/utils.cpp)
 
 # for testing
