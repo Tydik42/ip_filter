@@ -5,12 +5,12 @@
 #include <sstream>
 #include <cstdint>
 #include <array>
+#include <regex>
+#include <algorithm>
 
 class Ipv4
 {
     public:
-        Ipv4() : arr_ip{0, 0, 0, 0} {};
-
         explicit Ipv4(const std::string &Ipv4, char delimiter = '.');
 
         uint16_t first() const {return arr_ip[0];}
@@ -27,7 +27,24 @@ class Ipv4
 
         std::ostream &operator<<(std::ostream &os) const;
 
-        auto operator<=>(const Ipv4& ) const = default;
+        inline static bool is_valid_ip(const std::string &ip)
+        {
+            std::regex ipv4regex(
+                    "(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])");
+            return std::regex_match(ip, ipv4regex);
+        }
+
+        bool operator==(const Ipv4& rhs) const { return arr_ip == rhs.arr_ip; }
+
+        bool operator!=(const Ipv4& rhs) const { return arr_ip != rhs.arr_ip; }
+
+        bool operator<(const Ipv4& rhs) const { return arr_ip < rhs.arr_ip;   }
+
+        bool operator<=(const Ipv4& rhs) const { return arr_ip <= rhs.arr_ip; }
+
+        bool operator>(const Ipv4& rhs) const { return arr_ip > rhs.arr_ip;   }
+
+        bool operator>=(const Ipv4& rhs) const { return arr_ip >= rhs.arr_ip; }
 
         std::string to_string();
 

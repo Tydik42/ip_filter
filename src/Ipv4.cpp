@@ -1,14 +1,17 @@
 #include "Ipv4.h"
-#include <algorithm>
 
 Ipv4::Ipv4(const std::string &Ipv4, char delimiter) : arr_ip{}
 {
-    std::stringstream ss(Ipv4);
-    std::string token;
-    size_t i = 0;
-    while (std::getline(ss, token, delimiter)) {
-        arr_ip[i++] = std::stoul(token);
+    if (is_valid_ip(Ipv4))
+    {
+        std::stringstream ss(Ipv4);
+        std::string token;
+        size_t i = 0;
+        while (std::getline(ss, token, delimiter)) {
+            arr_ip[i++] = std::stoul(token);
+        }
     }
+    else {throw std::invalid_argument("IPv4 address string is malformed");}
 }
 
 bool Ipv4::operator>(const Ipv4 &other) {return arr_ip > other.arr_ip;}

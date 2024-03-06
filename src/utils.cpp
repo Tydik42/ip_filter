@@ -19,3 +19,10 @@ std::vector<Ipv4> read_ip()
     }
     return data;
 }
+
+bool is_valid_ip(const std::string &ip)
+{
+    std::regex ipv4regex(
+            "(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])");
+    return std::regex_match(ip, ipv4regex);
+}
