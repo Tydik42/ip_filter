@@ -25,8 +25,6 @@ class Ipv4
 
         bool operator>(const Ipv4 &other);
 
-        std::ostream &operator<<(std::ostream &os) const;
-
         inline static bool is_valid_ip(const std::string &ip)
         {
             std::regex ipv4regex(
@@ -46,8 +44,10 @@ class Ipv4
 
         bool operator>=(const Ipv4& rhs) const { return arr_ip >= rhs.arr_ip; }
 
-        std::string to_string();
+        std::string to_string() const;
 
     private:
         std::array<uint16_t, 4> arr_ip;
 };
+
+std::ostream &operator<<(std::ostream &os, const Ipv4 &addr);
