@@ -18,10 +18,10 @@ configure_file(version.h.in version.h)
 include_directories(include)
 
 
-add_executable(${MAIN_APP_NAME} src/main.cpp)
+add_executable(${MAIN_APP_NAME} src/ip_filter.cpp)
 add_library(addrv4 include/Ipv4.h src/Ipv4.cpp include/utils.h src/utils.cpp)
 
-#[[ # for testing
+# for testing
 include(FetchContent)
 FetchContent_Declare(
         googletest
@@ -34,19 +34,17 @@ enable_testing()
 
 add_executable(
         address_test
-        tests/address_test.cc
+        tests/address_test.cpp
 )
 target_link_libraries(
         address_test
         GTest::gtest_main
-        address4
+        addrv4
 )
-
-
 
 include(GoogleTest)
 gtest_discover_tests(address_test)
-]]
+
 
 # compiler options
 set_target_properties(${MAIN_APP_NAME} addrv4    PROPERTIES
@@ -64,6 +62,8 @@ target_compile_options(${MAIN_APP_NAME} PRIVATE
 target_compile_options(addrv4 PRIVATE
         -Wall -Wextra -pedantic -Werror
 )
+include(GoogleTest)
+gtest_discover_tests(address_test)
 
 install(TARGETS ${MAIN_APP_NAME} RUNTIME DESTINATION bin COMPONENT application)
 

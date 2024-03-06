@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <iterator>
 #include <vector>
+#include <regex>
 
 template<typename C, typename P>
 void print(C container, P predicate);
@@ -24,3 +25,5 @@ auto has_any_46 = [](const Ipv4 ip) {
     return ip.first() == 46 || ip.second() == 46 || ip.third() == 46 ||
            ip.fourth() == 46;
 };
+
+bool is_valid_ip(const std::string &ip);
